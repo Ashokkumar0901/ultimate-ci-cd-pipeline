@@ -71,8 +71,10 @@ stage('Debug Git') {
         steps {
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                 sh '''
-                    git config user.email "ashokddsp1582gmail.com"
-                    git config user.name "Ashokkumar0901"
+                    git config --global --add safe.directory /var/lib/jenkins/workspace/java-app-pipe
+
+                    git config user.email "ashok.xyz@gmail.com"
+                    git config user.name "Ashokkumar"
                     BUILD_NUMBER=${BUILD_NUMBER}
                     sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
                     git add java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
